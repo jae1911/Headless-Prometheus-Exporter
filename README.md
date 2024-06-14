@@ -23,4 +23,18 @@ Per world:
 
 Those names will not change in the future to ensure backwards compatibility of metrics.
 
+### Data sample
+
+Data may look like:
+```
+# RESONITE HEADLESS PROMETHEUS EXPORTER
+totalPlayers 1
+totalWorlds 1
+world_users{label="S-32ad2e00-453a-4a9c-802c-df3d7c3e57d7"} 1
+world_maxusers{label="S-32ad2e00-453a-4a9c-802c-df3d7c3e57d7"} 16
+engineFps 60.05342
+```
+
+---
+
 This repository is also [mirrored on GitHub](https://github.com/jae1911/Headless-Prometheus-Exporter).
