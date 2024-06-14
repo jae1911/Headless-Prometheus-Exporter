@@ -15,7 +15,7 @@ public class MetricsUtils
     
     public (int, int) GenericWorldData()
     {
-        List<World> worlds = GetWorlds().ToList();
+        List<World> worlds = GetWorlds();
         
         int totalUsers = 0;
 
