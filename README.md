@@ -23,3 +23,4 @@ Per world:
 
 Those names will not change in the future to ensure backwards compatibility of metrics.
 
+This repository is also [mirrored on GitHub](https://github.com/jae1911/Headless-Prometheus-Exporter).

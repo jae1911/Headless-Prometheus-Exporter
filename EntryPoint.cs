@@ -9,7 +9,7 @@ namespace HeadlessPrometheusExporter
     {
         public override string Name => "Headless Prometheus Exporter";
         public override string Author => "Jae \"J4\" Lo Presti";
-        public override string Version => "0.0.1";
+        public override string Version => "1.0.0";
 
         private static ModConfiguration _modConf;
 
