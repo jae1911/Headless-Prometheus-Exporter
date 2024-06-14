@@ -29,8 +29,6 @@ public class WebUtils()
 
     public void Stop()
     {
-        // Not the most elegant solution
-        // It throws, but it works
         _cancellationTokenSource.Cancel();
         _webThread.Abort();
         _listener.Stop();
