@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using static ResoniteModLoader.ResoniteMod;
 
 namespace HeadlessPrometheusExporter.utils;
 
@@ -16,6 +17,7 @@ public class WebUtils()
     public WebUtils(int port) : this()
     {
         _listener = new TcpListener(IPAddress.Any, port);
+        Msg($"Starting Prometheus on ${port}");
         _pu = new PromUtils();
     }
 
