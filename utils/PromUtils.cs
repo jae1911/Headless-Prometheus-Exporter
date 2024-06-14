@@ -10,14 +10,20 @@ public class PromUtils
     {
         string promString = $"# RESONITE HEADLESS PROMETHEUS EXPORTER{Environment.NewLine}";
 
-        (int, int) genericWorldData = _mu.GenericWorldData();
+        (int totalWorldUsers, int totalWorlds) = _mu.GenericWorldData();
 
-        promString += $"totalPlayers {genericWorldData.Item1}{Environment.NewLine}";
-        promString += $"totalWorlds {genericWorldData.Item2}{Environment.NewLine}";
+        promString += $"totalPlayers {totalWorldUsers}{Environment.NewLine}";
+        promString += $"totalWorlds {totalWorlds}{Environment.NewLine}";
 
         promString += _mu.FullWorldData();
 
         promString += $"engineFps {_mu.GetServerFps()}{Environment.NewLine}";
+
+        (int completedGatherJobs, int startedGatherJobs, int failedGatherJobs) = _mu.GetGatherJobs();
+
+        promString += $"completedGatherJobs {completedGatherJobs}{Environment.NewLine}";
+        promString += $"startedGatherJobs {startedGatherJobs}{Environment.NewLine}";
+        promString += $"failedGatherJobs {failedGatherJobs}{Environment.NewLine}";
         
         return promString;
     }

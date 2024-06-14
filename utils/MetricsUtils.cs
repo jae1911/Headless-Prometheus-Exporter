@@ -46,4 +46,9 @@ public class MetricsUtils
     {
         return Engine.Current.SystemInfo.FPS.ToString(CultureInfo.InvariantCulture);
     }
+
+    public (int, int, int) GetGatherJobs()
+    {
+        return (Engine.Current.TotalCompletedGatherJobs, Engine.Current.TotalStartedGatherJobs, Engine.Current.TotalFailedGatherJobs);
+    }
 }
