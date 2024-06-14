@@ -40,10 +40,7 @@ public class WebUtils()
         do
         {
             TcpClient client = _listener.AcceptTcpClient();
-            byte[] buffer = new byte[10240];
             NetworkStream stream = client.GetStream();
-            int length = stream.Read(buffer, 0, buffer.Length);
-            string incomingMessage = Encoding.UTF8.GetString(buffer, 0, length);
 
             string result = _pu.GeneratePromString();
             
