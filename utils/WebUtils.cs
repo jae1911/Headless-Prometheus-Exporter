@@ -11,6 +11,7 @@ public class WebUtils()
     private readonly TcpListener _listener;
     private Thread _webThread;
     private readonly PromUtils _pu;
+    private CancellationTokenSource _cancellationTokenSource;
 
     public WebUtils(int port) : this()
     {
@@ -20,7 +21,9 @@ public class WebUtils()
 
     public void Start()
     {
+        _listener.Start();
         _webThread = new Thread(StartListener);
+        _cancellationTokenSource = new CancellationTokenSource();
         _webThread.Start();
     }
 
@@ -28,19 +31,18 @@ public class WebUtils()
     {
         // Not the most elegant solution
         // It throws, but it works
+        _cancellationTokenSource.Cancel();
+        _webThread.Abort();
         _listener.Stop();
-        _webThread.Interrupt();
     }
 
     private void StartListener()
     {
-        _listener.Start();
-        
-        do
+        while(!_cancellationTokenSource.IsCancellationRequested)
         {
             TcpClient client = _listener.AcceptTcpClient();
             NetworkStream stream = client.GetStream();
-
+            
             string result = _pu.GeneratePromString();
             
             string reply = "HTTP/1.0 200 OK" 
@@ -58,6 +60,5 @@ public class WebUtils()
             
             stream.Write(replyBytes, 0, replyBytes.Length);
         }
-        while (true);
     }
 }
