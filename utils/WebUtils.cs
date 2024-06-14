@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using static ResoniteModLoader.ResoniteMod;
 
 namespace HeadlessPrometheusExporter.utils;
 

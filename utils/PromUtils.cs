@@ -4,13 +4,8 @@ namespace HeadlessPrometheusExporter.utils;
 
 public class PromUtils
 {
-    private MetricsUtils _mu;
+    private readonly MetricsUtils _mu = new();
 
-    public PromUtils()
-    {
-        _mu = new MetricsUtils();
-    }
-    
     public string GeneratePromString()
     {
         string promString = $"# RESONITE HEADLESS PROMETHEUS EXPORTER{Environment.NewLine}";
