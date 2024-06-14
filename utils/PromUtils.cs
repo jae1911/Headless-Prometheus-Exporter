@@ -24,6 +24,8 @@ public class PromUtils
         promString += $"completedGatherJobs {completedGatherJobs}{Environment.NewLine}";
         promString += $"startedGatherJobs {startedGatherJobs}{Environment.NewLine}";
         promString += $"failedGatherJobs {failedGatherJobs}{Environment.NewLine}";
+
+        promString += $"engineUpdateTime {_mu.GetEngineUpdateTime()}{Environment.NewLine}";
         
         return promString;
     }

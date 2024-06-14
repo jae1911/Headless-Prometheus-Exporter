@@ -51,4 +51,9 @@ public class MetricsUtils
     {
         return (Engine.Current.TotalCompletedGatherJobs, Engine.Current.TotalStartedGatherJobs, Engine.Current.TotalFailedGatherJobs);
     }
+
+    public string GetEngineUpdateTime()
+    {
+        return Engine.Current.TotalEngineUpdateTime.ToString(CultureInfo.InvariantCulture);
+    }
 }
