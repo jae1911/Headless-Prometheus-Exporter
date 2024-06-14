@@ -35,6 +35,21 @@ world_maxusers{label="S-32ad2e00-453a-4a9c-802c-df3d7c3e57d7"} 16
 engineFps 60.05342
 ```
 
+### Configuration
+
+To configure the mod, you will need to create a file named `HeadlessPrometheusExporter.json` in the `rml_config` folder containing the following content:
+```
+{
+    "version": "1.0.0",
+    "values": {
+        "WebServerPort": 8080
+    }
+}
+```
+
+Current configuration keys are:
+- `WebServerPort` - On which port the Prometheus data web server will run; default is `9000`
+
 ---
 
 This repository is also [mirrored on GitHub](https://github.com/jae1911/Headless-Prometheus-Exporter).
