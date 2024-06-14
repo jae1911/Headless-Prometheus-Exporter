@@ -17,7 +17,7 @@ namespace HeadlessPrometheusExporter
         private WebUtils _webServer;
 
         [AutoRegisterConfigKey]
-        private static readonly ModConfigurationKey<int> _webServerPort = new("WebServerPort", "Port of the Prometheus metrics web server.", () => 9000);
+        private static readonly ModConfigurationKey<int> WebServerPort = new("WebServerPort", "Port of the Prometheus metrics web server.", () => 9000);
 
         public override void OnEngineInit()
         {
@@ -32,7 +32,7 @@ namespace HeadlessPrometheusExporter
             Harmony harmony = new("lc.j4.hdpromex");
             harmony.PatchAll();
 
-            _webServer = new WebUtils(_modConf!.GetValue(_webServerPort));
+            _webServer = new WebUtils(_modConf!.GetValue(WebServerPort));
 
             Engine.Current.OnReady += () => _webServer.Start();
             Engine.Current.OnShutdown += () => _webServer.Stop();

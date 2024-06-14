@@ -24,7 +24,7 @@ public class MetricsUtils
             totalUsers += world.UserCount;
         }
         
-        return (totalUsers, worlds.Count());
+        return (totalUsers, worlds.Count);
     }
 
     public string FullWorldData()
