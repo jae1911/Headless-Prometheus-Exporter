@@ -8,9 +8,9 @@ namespace HeadlessPrometheusExporter.utils;
 
 public class MetricsUtils
 {
-    private IEnumerable<World> GetWorlds()
+    private List<World> GetWorlds()
     {
-        return Engine.Current.WorldManager.Worlds.Where(world => world != Userspace.UserspaceWorld && world != null);
+        return Engine.Current.WorldManager.Worlds.Where(world => world != Userspace.UserspaceWorld && world != null).ToList();
     }
     
     public (int, int) GenericWorldData()
@@ -29,7 +29,7 @@ public class MetricsUtils
 
     public string FullWorldData()
     {
-        IEnumerable<World> worlds = GetWorlds();
+        List<World> worlds = GetWorlds();
 
         string result = "";
 
