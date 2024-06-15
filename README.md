@@ -5,7 +5,7 @@ A [Prometheus](https://prometheus.io) exporter for the [Resonite](https://resoni
 ## Installation
 
 1. Download and install [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader)
-1. Download the [latest version of this mod](https://g.j4.lc/general-stuff/resonite/headless-prometheus-exporter/-/releases)
+1. Download the [latest version of this mod](https://g.j4.lc/general-stuff/resonite/headless-prometheus-exporter/-/releases/permalink/latest)
 1. Move the mod dll into the `rml_mods` folder
 1. Set your Prometheus scrape config to `localhost:9000` or `headless_container:9000`
 1. Enjoy
