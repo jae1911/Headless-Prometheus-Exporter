@@ -19,6 +19,9 @@ namespace HeadlessPrometheusExporter
         [AutoRegisterConfigKey]
         private static readonly ModConfigurationKey<int> WebServerPort = new("WebServerPort", "Port of the Prometheus metrics web server.", () => 9000);
 
+        [AutoRegisterConfigKey]
+        private static readonly ModConfigurationKey<bool> FullNetworkStats = new("FullNetworkStats", "Export all the network stats available.", () => true);
+
         public override void OnEngineInit()
         {
             if (!ModLoader.IsHeadless)
@@ -32,7 +35,7 @@ namespace HeadlessPrometheusExporter
             Harmony harmony = new("lc.j4.hdpromex");
             harmony.PatchAll();
 
-            _webServer = new WebUtils(_modConf!.GetValue(WebServerPort));
+            _webServer = new WebUtils(_modConf!.GetValue(WebServerPort), _modConf!.GetValue(FullNetworkStats));
 
             Engine.Current.OnReady += () => _webServer.Start();
             Engine.Current.OnShutdown += () => _webServer.Stop();

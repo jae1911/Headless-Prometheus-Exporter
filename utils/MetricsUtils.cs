@@ -8,6 +8,13 @@ namespace HeadlessPrometheusExporter.utils;
 
 public class MetricsUtils
 {
+    private bool _fullNetworkStats;
+
+    public MetricsUtils(bool fullNetworkStats)
+    {
+        _fullNetworkStats = fullNetworkStats;
+    }
+    
     private List<World> GetWorlds()
     {
         return Engine.Current.WorldManager.Worlds.Where(world => world != Userspace.UserspaceWorld && world != null).ToList();
@@ -31,12 +38,40 @@ public class MetricsUtils
     {
         List<World> worlds = GetWorlds();
 
-        string result = "";
+        string result = $"# WORLD STATS {Environment.NewLine}";
 
         foreach (World world in worlds)
         {
             result += $"world_users{{label=\"{world.SessionId}\"}} {world.UserCount}{Environment.NewLine}";
             result += $"world_maxusers{{label=\"{world.SessionId}\"}} {world.MaxUsers}{Environment.NewLine}";
+
+            if (!_fullNetworkStats) continue;
+            
+            // Network
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalCorrections\"}} {world.Session.TotalCorrections}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalProcessedMessages\"}} {world.Session.TotalProcessedMessages}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedConfirmations\"}} {world.Session.TotalReceivedConfirmations}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedControls\"}} {world.Session.TotalReceivedControls}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedDeltas\"}} {world.Session.TotalReceivedDeltas}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedFulls\"}} {world.Session.TotalReceivedFulls}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedStreams\"}} {world.Session.TotalReceivedStreams}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentConfirmations\"}} {world.Session.TotalSentConfirmations}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentDeltas\"}} {world.Session.TotalSentDeltas}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentControls\"}} {world.Session.TotalSentControls}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentFulls\"}} {world.Session.TotalSentFulls}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentStreams\"}} {world.Session.TotalSentStreams}{Environment.NewLine}";
         }
         
         return result;

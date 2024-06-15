@@ -4,7 +4,12 @@ namespace HeadlessPrometheusExporter.utils;
 
 public class PromUtils
 {
-    private readonly MetricsUtils _mu = new();
+    private readonly MetricsUtils _mu;
+
+    public PromUtils(bool fullNetworkStats)
+    {
+        _mu = new MetricsUtils(fullNetworkStats);
+    }
 
     public string GeneratePromString()
     {
