@@ -16,6 +16,10 @@ Generic data:
 - `totalPlayers` - Total players in all the sessions
 - `totalWorlds` - Total worlds opened
 - `engineFps` - FPS of the server
+- `completedGatherJobs` - Completed Gather jobs
+- `startedGatherJobs` - Started Gather jobs
+- `failedGatherJobs` - Failed Gather jobs
+- `engineUpdateTime` - Engine update time
 
 Per world:
 - `world_users{label="S-<sessionId>"}` - Users in current world
