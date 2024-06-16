@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using static ResoniteModLoader.ResoniteMod;
 
 namespace HeadlessPrometheusExporter.utils;
@@ -10,9 +11,9 @@ namespace HeadlessPrometheusExporter.utils;
 public class WebUtils
 {
     private readonly TcpListener _listener;
-    private Thread _webThread;
-    private CancellationTokenSource _cancellationTokenSource;
-
+    private Task _webTask;
+    private readonly ManualResetEvent _terminate = new(false);
+    
     public WebUtils(int port)
     {
         _listener = new TcpListener(IPAddress.Any, port);
@@ -21,22 +22,22 @@ public class WebUtils
 
     public void Start()
     {
+        _webTask = new Task(StartListener);
+        _webTask.Start();
+        
         _listener.Start();
-        _webThread = new Thread(StartListener);
-        _cancellationTokenSource = new CancellationTokenSource();
-        _webThread.Start();
     }
 
     public void Stop()
     {
-        _cancellationTokenSource.Cancel();
-        _webThread.Abort();
+        _terminate.Set();
+        
         _listener.Stop();
     }
 
     private void StartListener()
     {
-        while(!_cancellationTokenSource.IsCancellationRequested)
+        while(!_terminate.WaitOne(0))
         {
             TcpClient client = _listener.AcceptTcpClient();
             NetworkStream stream = client.GetStream();
