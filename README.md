@@ -24,7 +24,7 @@ Generic data:
 Per world:
 - `world_users{label="<sessionId>"}` - Users in current world
 - `world_maxusers{label="<sessionId>"}` - Maximum users allowed in world
-- `world_network{label="<sessionId>",type="<type>"` - Network stats (see below in sample)
+- `world_network{label="<sessionId>",type="<type>"}` - Network stats (see below in sample)
 
 Those names will not change in the future to ensure backwards compatibility of metrics.
 
