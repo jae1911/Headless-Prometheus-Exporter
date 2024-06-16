@@ -11,14 +11,12 @@ public class WebUtils
 {
     private readonly TcpListener _listener;
     private Thread _webThread;
-    private readonly PromUtils _pu;
     private CancellationTokenSource _cancellationTokenSource;
 
     public WebUtils(int port)
     {
         _listener = new TcpListener(IPAddress.Any, port);
         Msg($"Starting Prometheus on {port}");
-        _pu = new PromUtils();
     }
 
     public void Start()
@@ -43,7 +41,7 @@ public class WebUtils
             TcpClient client = _listener.AcceptTcpClient();
             NetworkStream stream = client.GetStream();
             
-            string result = _pu.GeneratePromString();
+            string result = PromUtils.GeneratePromString();
             
             string reply = "HTTP/1.0 200 OK" 
                            + Environment.NewLine 

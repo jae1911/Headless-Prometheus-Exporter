@@ -6,28 +6,23 @@ using FrooxEngine;
 
 namespace HeadlessPrometheusExporter.utils;
 
-public class MetricsUtils
+public abstract class MetricsUtils
 {
-    private List<World> GetWorlds()
+    private static List<World> GetWorlds()
     {
         return Engine.Current.WorldManager.Worlds.Where(world => world != Userspace.UserspaceWorld && world != null).ToList();
     }
     
-    public (int, int) GenericWorldData()
+    public static (int, int) GenericWorldData()
     {
         List<World> worlds = GetWorlds();
         
-        int totalUsers = 0;
+        int totalUsers = worlds.Sum(world => world.UserCount);
 
-        foreach (World world in worlds)
-        {
-            totalUsers += world.UserCount;
-        }
-        
         return (totalUsers, worlds.Count);
     }
 
-    public string FullWorldData()
+    public static string FullWorldData()
     {
         List<World> worlds = GetWorlds();
 
@@ -70,17 +65,17 @@ public class MetricsUtils
         return result;
     }
 
-    public string GetServerFps()
+    public static string GetServerFps()
     {
         return Engine.Current.SystemInfo.FPS.ToString(CultureInfo.InvariantCulture);
     }
 
-    public (int, int, int) GetGatherJobs()
+    public static (int, int, int) GetGatherJobs()
     {
         return (Engine.Current.TotalCompletedGatherJobs, Engine.Current.TotalStartedGatherJobs, Engine.Current.TotalFailedGatherJobs);
     }
 
-    public string GetEngineUpdateTime()
+    public static string GetEngineUpdateTime()
     {
         return Engine.Current.TotalEngineUpdateTime.ToString(CultureInfo.InvariantCulture);
     }
