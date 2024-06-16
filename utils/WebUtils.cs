@@ -17,7 +17,7 @@ public class WebUtils
     public WebUtils(int port)
     {
         _listener = new TcpListener(IPAddress.Any, port);
-        Msg($"Starting Prometheus on ${port}");
+        Msg($"Starting Prometheus on {port}");
         _pu = new PromUtils();
     }
 
