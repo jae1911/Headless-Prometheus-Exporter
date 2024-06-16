@@ -2,6 +2,10 @@
 
 A [Prometheus](https://prometheus.io) exporter for the [Resonite](https://resonite.com) headless software.
 
+## Upcoming changes
+
+You can see upcoming changes on the [compare page](https://g.j4.lc/general-stuff/resonite/headless-prometheus-exporter/-/compare/1.0.4...beep), selecting the latest tag and the main branch being `beep`.
+
 ## Installation
 
 1. Download and install [ResoniteModLoader](https://github.com/resonite-modding-group/ResoniteModLoader)
