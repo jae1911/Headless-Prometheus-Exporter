@@ -14,11 +14,11 @@ public class WebUtils
     private readonly PromUtils _pu;
     private CancellationTokenSource _cancellationTokenSource;
 
-    public WebUtils(int port, bool fullNetworkStats)
+    public WebUtils(int port)
     {
         _listener = new TcpListener(IPAddress.Any, port);
         Msg($"Starting Prometheus on ${port}");
-        _pu = new PromUtils(fullNetworkStats);
+        _pu = new PromUtils();
     }
 
     public void Start()

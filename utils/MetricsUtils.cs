@@ -6,7 +6,7 @@ using FrooxEngine;
 
 namespace HeadlessPrometheusExporter.utils;
 
-public class MetricsUtils(bool fullNetworkStats)
+public class MetricsUtils
 {
     private List<World> GetWorlds()
     {
@@ -38,7 +38,7 @@ public class MetricsUtils(bool fullNetworkStats)
             result += $"world_users{{label=\"{world.SessionId}\"}} {world.UserCount}{Environment.NewLine}";
             result += $"world_maxusers{{label=\"{world.SessionId}\"}} {world.MaxUsers}{Environment.NewLine}";
 
-            if (!fullNetworkStats) continue;
+            if (!EntryPoint.ModConf.GetValue(EntryPoint.FullNetworkStats)) continue;
             
             // Network
             result +=

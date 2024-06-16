@@ -12,7 +12,7 @@ namespace HeadlessPrometheusExporter
         public override string Version => "1.0.3";
         public override string Link => "https://g.j4.lc/general-stuff/resonite/headless-prometheus-exporter";
 
-        private static ModConfiguration _modConf;
+        public static ModConfiguration ModConf { get; private set; }
 
         private WebUtils _webServer;
 
@@ -20,7 +20,7 @@ namespace HeadlessPrometheusExporter
         private static readonly ModConfigurationKey<int> WebServerPort = new("WebServerPort", "Port of the Prometheus metrics web server.", () => 9000);
 
         [AutoRegisterConfigKey]
-        private static readonly ModConfigurationKey<bool> FullNetworkStats = new("FullNetworkStats", "Export all the network stats available.", () => true);
+        public static readonly ModConfigurationKey<bool> FullNetworkStats = new("FullNetworkStats", "Export all the network stats available.", () => true);
 
         public override void OnEngineInit()
         {
@@ -30,12 +30,12 @@ namespace HeadlessPrometheusExporter
                 return;
             }
             
-            _modConf = GetConfiguration();
+            ModConf = GetConfiguration();
             
             Harmony harmony = new("lc.j4.hdpromex");
             harmony.PatchAll();
 
-            _webServer = new WebUtils(_modConf!.GetValue(WebServerPort), _modConf!.GetValue(FullNetworkStats));
+            _webServer = new WebUtils(ModConf!.GetValue(WebServerPort));
 
             Engine.Current.OnReady += () => _webServer.Start();
             Engine.Current.OnShutdown += () => _webServer.Stop();
