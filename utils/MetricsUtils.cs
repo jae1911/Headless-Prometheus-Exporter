@@ -32,7 +32,7 @@ public abstract class MetricsUtils
         {
             result += $"world_users{{label=\"{world.SessionId}\"}} {world.UserCount}{Environment.NewLine}";
             result += $"world_maxusers{{label=\"{world.SessionId}\"}} {world.MaxUsers}{Environment.NewLine}";
-
+            
             if (!EntryPoint.ModConf.GetValue(EntryPoint.FullNetworkStats)) continue;
             
             // Network
@@ -60,6 +60,13 @@ public abstract class MetricsUtils
                 $"world_network{{label=\"{world.SessionId}\",type=\"totalSentFulls\"}} {world.Session.TotalSentFulls}{Environment.NewLine}";
             result +=
                 $"world_network{{label=\"{world.SessionId}\",type=\"totalSentStreams\"}} {world.Session.TotalSentStreams}{Environment.NewLine}";
+
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"lastGeneratedDeltaChanges\"}} {world.Session.LastGeneratedDeltaChanges}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"messagesToProcessCount\"}} {world.Session.MessagesToProcessCount}{Environment.NewLine}";
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"messagesToTransmitCount\"}} {world.Session.MessagesToTransmitCount}{Environment.NewLine}";
         }
         
         return result;
