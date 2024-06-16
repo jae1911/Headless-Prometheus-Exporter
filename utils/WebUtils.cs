@@ -7,14 +7,14 @@ using static ResoniteModLoader.ResoniteMod;
 
 namespace HeadlessPrometheusExporter.utils;
 
-public class WebUtils()
+public class WebUtils
 {
     private readonly TcpListener _listener;
     private Thread _webThread;
     private readonly PromUtils _pu;
     private CancellationTokenSource _cancellationTokenSource;
 
-    public WebUtils(int port, bool fullNetworkStats) : this()
+    public WebUtils(int port, bool fullNetworkStats)
     {
         _listener = new TcpListener(IPAddress.Any, port);
         Msg($"Starting Prometheus on ${port}");

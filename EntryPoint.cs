@@ -40,7 +40,5 @@ namespace HeadlessPrometheusExporter
             Engine.Current.OnReady += () => _webServer.Start();
             Engine.Current.OnShutdown += () => _webServer.Stop();
         }
-
-        
     }
 }
