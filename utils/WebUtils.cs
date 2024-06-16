@@ -22,10 +22,10 @@ public class WebUtils
 
     public void Start()
     {
+        _listener.Start();
+        
         _webTask = new Task(StartListener);
         _webTask.Start();
-        
-        _listener.Start();
     }
 
     public void Stop()
