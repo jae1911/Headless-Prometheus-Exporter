@@ -20,8 +20,6 @@ public class PromUtils
         promString += $"totalPlayers {totalWorldUsers}{Environment.NewLine}";
         promString += $"totalWorlds {totalWorlds}{Environment.NewLine}";
 
-        promString += _mu.FullWorldData();
-
         promString += $"engineFps {_mu.GetServerFps()}{Environment.NewLine}";
 
         (int completedGatherJobs, int startedGatherJobs, int failedGatherJobs) = _mu.GetGatherJobs();
@@ -31,6 +29,8 @@ public class PromUtils
         promString += $"failedGatherJobs {failedGatherJobs}{Environment.NewLine}";
 
         promString += $"engineUpdateTime {_mu.GetEngineUpdateTime()}{Environment.NewLine}";
+        
+        promString += _mu.FullWorldData();
         
         return promString;
     }
