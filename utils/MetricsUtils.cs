@@ -30,43 +30,43 @@ public abstract class MetricsUtils
 
         foreach (World world in worlds)
         {
-            result += $"world_users{{label=\"{world.SessionId}\"}} {world.UserCount}{Environment.NewLine}";
-            result += $"world_maxusers{{label=\"{world.SessionId}\"}} {world.MaxUsers}{Environment.NewLine}";
+            result += $"world_users{{label=\"{world.SessionId}\"}} {world.UserCount}\n";
+            result += $"world_maxusers{{label=\"{world.SessionId}\"}} {world.MaxUsers}\n";
             
             if (!EntryPoint.ModConf.GetValue(EntryPoint.FullNetworkStats)) continue;
             
             // Network
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalCorrections\"}} {world.Session.TotalCorrections}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalCorrections\"}} {world.Session.TotalCorrections}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalProcessedMessages\"}} {world.Session.TotalProcessedMessages}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalProcessedMessages\"}} {world.Session.TotalProcessedMessages}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedConfirmations\"}} {world.Session.TotalReceivedConfirmations}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedConfirmations\"}} {world.Session.TotalReceivedConfirmations}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedControls\"}} {world.Session.TotalReceivedControls}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedControls\"}} {world.Session.TotalReceivedControls}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedDeltas\"}} {world.Session.TotalReceivedDeltas}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedDeltas\"}} {world.Session.TotalReceivedDeltas}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedFulls\"}} {world.Session.TotalReceivedFulls}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedFulls\"}} {world.Session.TotalReceivedFulls}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedStreams\"}} {world.Session.TotalReceivedStreams}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedStreams\"}} {world.Session.TotalReceivedStreams}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentConfirmations\"}} {world.Session.TotalSentConfirmations}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentConfirmations\"}} {world.Session.TotalSentConfirmations}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentDeltas\"}} {world.Session.TotalSentDeltas}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentDeltas\"}} {world.Session.TotalSentDeltas}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentControls\"}} {world.Session.TotalSentControls}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentControls\"}} {world.Session.TotalSentControls}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentFulls\"}} {world.Session.TotalSentFulls}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentFulls\"}} {world.Session.TotalSentFulls}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentStreams\"}} {world.Session.TotalSentStreams}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentStreams\"}} {world.Session.TotalSentStreams}\n";
 
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"lastGeneratedDeltaChanges\"}} {world.Session.LastGeneratedDeltaChanges}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"lastGeneratedDeltaChanges\"}} {world.Session.LastGeneratedDeltaChanges}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"messagesToProcessCount\"}} {world.Session.MessagesToProcessCount}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"messagesToProcessCount\"}} {world.Session.MessagesToProcessCount}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"messagesToTransmitCount\"}} {world.Session.MessagesToTransmitCount}{Environment.NewLine}";
+                $"world_network{{label=\"{world.SessionId}\",type=\"messagesToTransmitCount\"}} {world.Session.MessagesToTransmitCount}\n";
         }
         
         return result;

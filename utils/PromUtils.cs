@@ -6,22 +6,22 @@ public abstract class PromUtils
 {
     public static string GeneratePromString()
     {
-        string promString = $"# RESONITE HEADLESS PROMETHEUS EXPORTER{Environment.NewLine}";
+        string promString = $"# RESONITE HEADLESS PROMETHEUS EXPORTER\n";
 
         (int totalWorldUsers, int totalWorlds) = MetricsUtils.GenericWorldData();
 
-        promString += $"totalPlayers {totalWorldUsers}{Environment.NewLine}";
-        promString += $"totalWorlds {totalWorlds}{Environment.NewLine}";
+        promString += $"totalPlayers {totalWorldUsers}\n";
+        promString += $"totalWorlds {totalWorlds}\n";
 
-        promString += $"engineFps {MetricsUtils.GetServerFps()}{Environment.NewLine}";
+        promString += $"engineFps {MetricsUtils.GetServerFps()}\n";
 
         (int completedGatherJobs, int startedGatherJobs, int failedGatherJobs) = MetricsUtils.GetGatherJobs();
 
-        promString += $"completedGatherJobs {completedGatherJobs}{Environment.NewLine}";
-        promString += $"startedGatherJobs {startedGatherJobs}{Environment.NewLine}";
-        promString += $"failedGatherJobs {failedGatherJobs}{Environment.NewLine}";
+        promString += $"completedGatherJobs {completedGatherJobs}\n";
+        promString += $"startedGatherJobs {startedGatherJobs}\n";
+        promString += $"failedGatherJobs {failedGatherJobs}\n";
 
-        promString += $"engineUpdateTime {MetricsUtils.GetEngineUpdateTime()}{Environment.NewLine}";
+        promString += $"engineUpdateTime {MetricsUtils.GetEngineUpdateTime()}\n";
         
         promString += MetricsUtils.FullWorldData();
         
