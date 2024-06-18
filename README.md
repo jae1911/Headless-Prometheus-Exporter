@@ -2,6 +2,8 @@
 
 A [Prometheus](https://prometheus.io) exporter for the [Resonite](https://resonite.com) headless software.
 
+Check out the [basic setup video tutorial](https://v.j4.lc/w/aPZVNi8JY4qGy2ZW6ozWpH). Also see the [minimal Grafana setup](https://g.j4.lc/general-stuff/configuration/grafana-minimal-setup).
+
 ## Upcoming changes
 
 You can see upcoming changes on the [compare page](https://g.j4.lc/general-stuff/resonite/headless-prometheus-exporter/-/compare/1.0.4...beep), selecting the latest tag and the main branch being `beep`.
