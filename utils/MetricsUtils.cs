@@ -70,7 +70,7 @@ public abstract class MetricsUtils
             
             // Calculate average LNL latency for session
             List<float> playerLatency = new List<float>();
-            var allUsers = world.FindUsers(user => true);
+            var allUsers = world.FindUsers(user => user != world.HostUser);
             foreach (var user in allUsers)
             {
                 playerLatency.Add(user.Ping);
