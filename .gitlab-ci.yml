@@ -51,7 +51,7 @@ build:mod:
     - pre:resonite-download
   before_script:
     - dotnet restore
-    - curl -LO https://github.com/resonite-modding-group/ResoniteModLoader/releases/download/3.0.0/ResoniteModLoader.dll
+    - curl -LO https://github.com/resonite-modding-group/ResoniteModLoader/releases/latest/download/ResoniteModLoader.dll
     - mv Resonite/Resonite_Data/Managed/FrooxEngine.dll .
   script:
     - dotnet build --configuration Release
