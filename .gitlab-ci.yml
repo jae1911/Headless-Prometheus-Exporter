@@ -34,9 +34,10 @@ pre:check-version:
   allow_failure: true
   script:
     - VERSION_CSPROJ=`grep AssemblyVersion HeadlessPrometheusExporter.csproj  | grep -oE '[^<>]*>[^<>]+' | cut -d'>' -f2`
+    - ASSEMBLYFILE_VERSION=`grep FileVersion HeadlessPrometheusExporter.csproj  | grep -oE '[^<>]*>[^<>]+' | cut -d'>' -f2`
     - VERSION_MOD=`grep Version EntryPoint.cs | cut -d '"' -f2`
     - |
-      if [ "$VERSION_CSPROJ" == "$VERSION_MOD" ]; then
+      if [ "$VERSION_CSPROJ" == "$VERSION_MOD" ] && [ "$VERSION_MOD" == "$ASSEMBLYFILE_VERSION" ]; then
         exit 0
         echo "OK"
       else

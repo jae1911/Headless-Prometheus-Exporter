@@ -4,6 +4,8 @@
         <TargetFramework>net8.0</TargetFramework>
         <AssemblyVersion>1.1.0</AssemblyVersion>
         <AssemblyOriginatorKeyFile>MAIN.snk</AssemblyOriginatorKeyFile>
+        <Version>1.1.0</Version>
+        <FileVersion>1.1.0</FileVersion>
     </PropertyGroup>
     <ItemGroup>
       <Reference Include="FrooxEngine">
