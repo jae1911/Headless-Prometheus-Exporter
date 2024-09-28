@@ -79,6 +79,7 @@ release:makerelease:
     - export MESSAGE=$CI_COMMIT_TAG_MESSAGE
     - mv Resonite/Resonite_Data/Managed/FrooxEngine.dll .
     - export FROOXENGINE=`strings FrooxEngine.dll | egrep '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'`
+    - export FROOXENGINE_HASH=`sha256sum FrooxEngine.dll`
     - envsubst < .gitlab/release.template.md > release-notes.md
   artifacts:
     paths:

@@ -6,6 +6,7 @@
         <AssemblyOriginatorKeyFile>MAIN.snk</AssemblyOriginatorKeyFile>
         <Version>1.2.0</Version>
         <FileVersion>1.2.0</FileVersion>
+        <Deterministic>true</Deterministic>
     </PropertyGroup>
     <ItemGroup>
       <Reference Include="FrooxEngine">
