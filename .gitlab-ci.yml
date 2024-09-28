@@ -1,5 +1,9 @@
 stages:
   - test
+  - prepare
+  - build
+  - release
+  - postrelease
 
 variables:
   SAST_IMAGE_SUFFIX: "-fips"
@@ -9,3 +13,87 @@ include:
   - template: Jobs/SAST.gitlab-ci.yml
   - template: Jobs/Dependency-Scanning.gitlab-ci.yml
   - template: Jobs/Code-Quality.gitlab-ci.yml
+
+pre:resonite-download:
+  stage: prepare
+  image:
+    name: steamcmd/steamcmd:latest
+    entrypoint: [""]
+  tags:
+    - x86
+  script:
+    - steamcmd +force_install_dir /builds/general-stuff/resonite/headless-prometheus-exporter/Resonite +login $STEAMCMD_USER $STEAMCMD_PASSWORD +app_license_request 2519830 +app_update 2519830 validate +quit
+  artifacts:
+    paths:
+      - Resonite/Resonite_Data/Managed/FrooxEngine.dll
+    expire_in: 1 day
+
+pre:check-version:
+  stage: prepare
+  image: debian:bookworm-slim
+  allow_failure: true
+  script:
+    - VERSION_CSPROJ=`grep AssemblyVersion HeadlessPrometheusExporter.csproj  | grep -oE '[^<>]*>[^<>]+' | cut -d'>' -f2`
+    - VERSION_MOD=`grep Version EntryPoint.cs | cut -d '"' -f2`
+    - |
+      if [ "$VERSION_CSPROJ" == "$VERSION_MOD" ]; then
+        exit 0
+        echo "OK"
+      else
+        echo "KO"
+        exit 1
+      fi
+
+build:mod:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:8.0
+  needs:
+    - pre:resonite-download
+  before_script:
+    - dotnet restore
+    - curl -LO https://github.com/resonite-modding-group/ResoniteModLoader/releases/download/3.0.0/ResoniteModLoader.dll
+    - mv Resonite/Resonite_Data/Managed/FrooxEngine.dll .
+  script:
+    - dotnet build --configuration Release
+  artifacts:
+    paths:
+      - bin/Release/net8.0/HeadlessPrometheusExporter.dll
+    expire_in: 30 days
+
+release:makerelease:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs:
+    - pre:check-version
+    - build:mod
+  rules:
+    - if: $CI_COMMIT_TAG
+  before_script:
+    - apk add --update yq envsubst
+  script:
+    - echo "Creating release $CI_COMMIT_TAG"
+    - export VERSION=$CI_COMMIT_TAG
+    - export HASH=`sha256sum bin/Release/net8.0/HeadlessPrometheusExporter.dll | sed 's/\s.*$//'`
+    - export MESSAGE=$CI_COMMIT_TAG_MESSAGE
+    - envsubst < .gitlab/release.template.md > release-notes.md
+  artifacts:
+    paths:
+      - release-notes.md
+  release:
+    tag_name: $CI_COMMIT_TAG
+    description: './release-notes.md'
+
+release:upload:
+  stage: postrelease
+  image:
+    name: registry.gitlab.com/gitlab-org/cli:latest
+    entrypoint: [""]
+  rules: 
+    - if: $CI_COMMIT_TAG
+  needs:
+    - release:makerelease
+    - build:mod
+  before_script: 
+    - glab auth login -h $CI_SERVER_FQDN -t $GL_RELEASE_CLI
+  script:
+    - glab release upload $CI_COMMIT_TAG bin/Release/net8.0/HeadlessPrometheusExporter.dll
