@@ -67,6 +67,16 @@ public abstract class MetricsUtils
                 $"world_network{{label=\"{world.SessionId}\",type=\"messagesToProcessCount\"}} {world.Session.MessagesToProcessCount}\n";
             result +=
                 $"world_network{{label=\"{world.SessionId}\",type=\"messagesToTransmitCount\"}} {world.Session.MessagesToTransmitCount}\n";
+            
+            // Calculate average LNL latency for session
+            List<float> playerLatency = new List<float>();
+            var allUsers = world.FindUsers(user => true);
+            foreach (var user in allUsers)
+            {
+                playerLatency.Add(user.Ping);
+            }
+            
+            result += $"world_network{{label=\"{world.SessionId}\",type=\"averagePlayerLatency\"}} {playerLatency.Average()}";
         }
         
         return result;
