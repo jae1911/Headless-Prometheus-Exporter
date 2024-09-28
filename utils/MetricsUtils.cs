@@ -75,8 +75,10 @@ public abstract class MetricsUtils
             {
                 playerLatency.Add(user.Ping);
             }
+
+            float avgLatency = playerLatency.Count > 0 ? playerLatency.Average() : 0;
             
-            result += $"world_network{{label=\"{world.SessionId}\",type=\"averagePlayerLatency\"}} {playerLatency.Average()}";
+            result += $"world_network{{label=\"{world.SessionId}\",type=\"averagePlayerLatency\"}} {avgLatency}";
         }
         
         return result;
