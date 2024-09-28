@@ -68,7 +68,7 @@ public abstract class MetricsUtils
             result +=
                 $"world_network{{label=\"{world.SessionId}\",type=\"messagesToTransmitCount\"}} {world.Session.MessagesToTransmitCount}\n";
             
-            // Calculate average LNL latency for session
+            // Calculate average latency for session
             List<float> playerLatency = new List<float>();
             var allUsers = world.FindUsers(user => user != world.HostUser);
             foreach (var user in allUsers)
