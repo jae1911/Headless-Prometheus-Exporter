@@ -2,6 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
+        <AssemblyVersion>1.0.7.1</AssemblyVersion>
+        <AssemblyOriginatorKeyFile>MAIN.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
     <ItemGroup>
       <Reference Include="FrooxEngine">
