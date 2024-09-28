@@ -7,6 +7,7 @@ stages:
 
 variables:
   SAST_IMAGE_SUFFIX: "-fips"
+  RESONITE_BRANCH: ""
 
 include:
   - template: Jobs/Secret-Detection.gitlab-ci.yml
@@ -19,10 +20,14 @@ pre:resonite-download:
   image:
     name: steamcmd/steamcmd:latest
     entrypoint: [""]
+  rules:
+    - if: $CI_COMMIT_REF_NAME =~ $CI_DEFAULT_BRANCH
+      variables:
+        RESONITE_BRANCH: "-beta prerelease"
   tags:
     - x86
   script:
-    - steamcmd +force_install_dir /builds/general-stuff/resonite/headless-prometheus-exporter/Resonite +login $STEAMCMD_USER $STEAMCMD_PASSWORD +app_license_request 2519830 +app_update 2519830 validate +quit
+    - steamcmd +force_install_dir /builds/general-stuff/resonite/headless-prometheus-exporter/Resonite +login $STEAMCMD_USER $STEAMCMD_PASSWORD +app_license_request 2519830 $RESONITE_BRANCH +app_update 2519830 validate +quit
   artifacts:
     paths:
       - Resonite/Resonite_Data/Managed/FrooxEngine.dll
