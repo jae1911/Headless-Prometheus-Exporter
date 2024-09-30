@@ -37,36 +37,36 @@ public abstract class MetricsUtils
             
             // Network
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalCorrections\"}} {world.Session.TotalCorrections}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalCorrections\"}} {world.Session.Sync.TotalCorrections}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalProcessedMessages\"}} {world.Session.TotalProcessedMessages}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalProcessedMessages\"}} {world.Session.Sync.TotalProcessedMessages}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedConfirmations\"}} {world.Session.TotalReceivedConfirmations}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedConfirmations\"}} {world.Session.Messages.Incoming.TotalReceivedConfirmations}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedControls\"}} {world.Session.TotalReceivedControls}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedControls\"}} {world.Session.Messages.Incoming.TotalReceivedControls}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedDeltas\"}} {world.Session.TotalReceivedDeltas}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedDeltas\"}} {world.Session.Messages.Incoming.TotalReceivedDeltas}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedFulls\"}} {world.Session.TotalReceivedFulls}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedFulls\"}} {world.Session.Messages.Incoming.TotalReceivedFulls}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedStreams\"}} {world.Session.TotalReceivedStreams}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalReceivedStreams\"}} {world.Session.Messages.Incoming.TotalReceivedStreams}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentConfirmations\"}} {world.Session.TotalSentConfirmations}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentConfirmations\"}} {world.Session.Messages.Outgoing.TotalSentConfirmations}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentDeltas\"}} {world.Session.TotalSentDeltas}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentDeltas\"}} {world.Session.Messages.Outgoing.TotalSentDeltas}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentControls\"}} {world.Session.TotalSentControls}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentControls\"}} {world.Session.Messages.Outgoing.TotalSentControls}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentFulls\"}} {world.Session.TotalSentFulls}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentFulls\"}} {world.Session.Messages.Outgoing.TotalSentFulls}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentStreams\"}} {world.Session.TotalSentStreams}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalSentStreams\"}} {world.Session.Messages.Outgoing.TotalSentStreams}\n";
 
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"lastGeneratedDeltaChanges\"}} {world.Session.LastGeneratedDeltaChanges}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"lastGeneratedDeltaChanges\"}} {world.Session.Sync.LastGeneratedDeltaChanges}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"messagesToProcessCount\"}} {world.Session.MessagesToProcessCount}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"messagesToProcessCount\"}} {world.Session.Sync.MessagesToProcessCount}\n";
             result +=
-                $"world_network{{label=\"{world.SessionId}\",type=\"messagesToTransmitCount\"}} {world.Session.MessagesToTransmitCount}\n";
+                $"world_network{{label=\"{world.SessionId}\",type=\"messagesToTransmitCount\"}} {world.Session.Messages.Outgoing.MessagesToTransmitCount}\n";
             
             // Calculate average latency for session
             List<float> playerLatency = new List<float>();

@@ -6,7 +6,7 @@ stages:
   - postrelease
 
 variables:
-  SAST_IMAGE_SUFFIX: "-fips"
+  RESONITE_BRANCH: "public"
 
 include:
   - template: Jobs/Secret-Detection.gitlab-ci.yml
@@ -19,10 +19,16 @@ pre:resonite-download:
   image:
     name: steamcmd/steamcmd:latest
     entrypoint: [""]
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "prerelease"
+      variables:
+        RESONITE_BRANCH: "prerelease"
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   tags:
     - x86
   script:
-    - steamcmd +force_install_dir /builds/general-stuff/resonite/headless-prometheus-exporter/Resonite +login $STEAMCMD_USER $STEAMCMD_PASSWORD +app_license_request 2519830 +app_update 2519830 validate +quit
+    - steamcmd +force_install_dir /builds/general-stuff/resonite/headless-prometheus-exporter/Resonite +login $STEAMCMD_USER $STEAMCMD_PASSWORD +app_license_request 2519830 +app_update 2519830 -beta $RESONITE_BRANCH validate +quit
   artifacts:
     paths:
       - Resonite/Resonite_Data/Managed/FrooxEngine.dll
@@ -59,6 +65,7 @@ build:mod:
   artifacts:
     paths:
       - bin/Release/net8.0/HeadlessPrometheusExporter.dll
+      - ResoniteModLoader.dll
     expire_in: 30 days
 
 release:makerelease:
@@ -80,6 +87,8 @@ release:makerelease:
     - mv Resonite/Resonite_Data/Managed/FrooxEngine.dll .
     - export FROOXENGINE=`strings FrooxEngine.dll | egrep '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'`
     - export FROOXENGINE_HASH=`sha256sum FrooxEngine.dll`
+    - export RMLHASH=`sha256sum ResoniteModLoader.dll`
+    - export RMLVERSION=`strings ResoniteModLoader.dll | egrep '^[0-9]+\.[0-9]+\.[0-9]'`
     - envsubst < .gitlab/release.template.md > release-notes.md
   artifacts:
     paths:
