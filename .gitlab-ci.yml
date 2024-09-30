@@ -20,11 +20,11 @@ pre:resonite-download:
     name: steamcmd/steamcmd:latest
     entrypoint: [""]
   rules:
-    - if: $CI_COMMIT_BRANCH == "prerelease"
+    - if: $CI_COMMIT_REF_NAME == "prerelease"
       variables:
         RESONITE_BRANCH: "prerelease"
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   tags:
     - x86
   script:
