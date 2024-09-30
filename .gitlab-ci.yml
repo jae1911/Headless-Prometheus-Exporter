@@ -26,7 +26,7 @@ pre:resonite-download:
   artifacts:
     paths:
       - Resonite/Resonite_Data/Managed/FrooxEngine.dll
-    expire_in: 1 day
+    expire_in: 1 hour
 
 pre:check-version:
   stage: prepare
