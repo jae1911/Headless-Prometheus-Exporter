@@ -6,6 +6,6 @@ $MESSAGE
 
 ## Safety
 
-File hash: $HASH
-
-Build using FrooxEngine $FROOXENGINE
+File hash: `$HASH`  
+Built using FrooxEngine `$FROOXENGINE`  
+FrooxEngine hash: `$FROOXENGINE_HASH`
