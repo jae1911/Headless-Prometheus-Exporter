@@ -6,7 +6,6 @@ stages:
   - postrelease
 
 variables:
-  SAST_IMAGE_SUFFIX: "-fips"
   RESONITE_BRANCH: ""
 
 include:
