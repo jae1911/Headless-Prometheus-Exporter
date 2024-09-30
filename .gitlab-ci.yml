@@ -21,10 +21,11 @@ pre:resonite-download:
     name: steamcmd/steamcmd:latest
     entrypoint: [""]
   rules:
-    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME != "prerelease"
       variables:
         RESONITE_BRANCH: "-beta prerelease -betapassword $STEAMCMD_BETA_PASS"
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   tags:
     - x86
   script:
