@@ -66,6 +66,7 @@ build:mod:
   artifacts:
     paths:
       - bin/Release/net8.0/HeadlessPrometheusExporter.dll
+      - ResoniteModLoader.dll
     expire_in: 30 days
 
 release:makerelease:
@@ -87,6 +88,8 @@ release:makerelease:
     - mv Resonite/Resonite_Data/Managed/FrooxEngine.dll .
     - export FROOXENGINE=`strings FrooxEngine.dll | egrep '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'`
     - export FROOXENGINE_HASH=`sha256sum FrooxEngine.dll`
+    - export RMLHASH=`sha256sum ResoniteModLoader.dll`
+    - export RMLVERSION=`strings ResoniteModLoader.dll | egrep '^[0-9]+\.[0-9]+\.[0-9]'`
     - envsubst < .gitlab/release.template.md > release-notes.md
   artifacts:
     paths:
