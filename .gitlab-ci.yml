@@ -23,7 +23,7 @@ pre:resonite-download:
   rules:
     - if: $CI_COMMIT_REF_NAME == "prerelease"
       variables:
-        RESONITE_BRANCH: "-beta prerelease -betapassword $STEAMCMD_BETA_PASS"
+        RESONITE_BRANCH: "-beta prerelease"
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   tags:
