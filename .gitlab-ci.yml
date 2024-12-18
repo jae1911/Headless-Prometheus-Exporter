@@ -64,7 +64,7 @@ build:mod:
     - dotnet build --configuration Release
   artifacts:
     paths:
-      - bin/Release/net8.0/HeadlessPrometheusExporter.dll
+      - bin/Release/**/HeadlessPrometheusExporter.dll
       - ResoniteModLoader.dll
     expire_in: 30 days
 
