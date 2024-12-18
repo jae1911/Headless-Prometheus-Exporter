@@ -2,10 +2,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
-        <AssemblyVersion>1.2.1</AssemblyVersion>
+        <AssemblyVersion>1.2.2</AssemblyVersion>
         <AssemblyOriginatorKeyFile>MAIN.snk</AssemblyOriginatorKeyFile>
-        <Version>1.2.1</Version>
-        <FileVersion>1.2.1</FileVersion>
+        <Version>1.2.2</Version>
+        <FileVersion>1.2.2</FileVersion>
         <Deterministic>true</Deterministic>
     </PropertyGroup>
     <ItemGroup>
