@@ -9,7 +9,7 @@ namespace HeadlessPrometheusExporter
     {
         public override string Name => "Headless Prometheus Exporter";
         public override string Author => "Jae \"J4\" Lo Presti";
-        public override string Version => "1.2.1";
+        public override string Version => "1.2.2";
         public override string Link => "https://g.j4.lc/general-stuff/resonite/headless-prometheus-exporter";
 
         public static ModConfiguration ModConf { get; private set; }
