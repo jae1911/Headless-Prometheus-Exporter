@@ -7,6 +7,7 @@ stages:
 
 variables:
   RESONITE_BRANCH: "public"
+  GITLAB_ADVANCED_SAST_ENABLED: true
 
 include:
   - template: Jobs/Secret-Detection.gitlab-ci.yml
