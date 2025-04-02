@@ -67,6 +67,9 @@ public abstract class MetricsUtils
                 $"world_network{{label=\"{world.SessionId}\",type=\"messagesToProcessCount\"}} {world.Session.Sync.MessagesToProcessCount}\n";
             result +=
                 $"world_network{{label=\"{world.SessionId}\",type=\"messagesToTransmitCount\"}} {world.Session.Messages.Outgoing.MessagesToTransmitCount}\n";
+
+            result +=
+                $"world_network{{label=\"{world.SessionId}\",type=\"totalAssetTransferBytes\"}} {world.Session.Engine.AssetManager.TotalBytesPerSecond}\n";
             
             // Calculate average latency for session
             List<float> playerLatency = new List<float>();
