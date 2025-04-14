@@ -78,7 +78,7 @@ public abstract class MetricsUtils
 
             float avgLatency = playerLatency.Count > 0 ? playerLatency.Average() : 0;
             
-            result += $"world_network{{label=\"{world.SessionId}\",type=\"averagePlayerLatency\"}} {avgLatency}";
+            result += $"world_network{{label=\"{world.SessionId}\",type=\"averagePlayerLatency\"}} {avgLatency}\n";
         }
         
         return result;
